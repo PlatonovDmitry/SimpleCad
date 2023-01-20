@@ -10,7 +10,7 @@ namespace SimpleCad.UI
         internal ProjectWindow(ProjectVm vm)
         {
             InitializeComponent();
-            DataContext = this;
+            DataContext = vm;
         }
     }
 }

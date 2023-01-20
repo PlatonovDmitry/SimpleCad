@@ -5,57 +5,89 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleCad"
         xmlns:ui="clr-namespace:SimpleCad.UI"
+        xmlns:helpers="clr-namespace:SimpleCad.Helpers"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         d:DataContext="{d:DesignInstance ui:ProjectVm}"
         x:ClassModifier="internal">
 
-<Window.Resources>
-    <DataTemplate DataType="{x:Type ui:CircleGeometryVm}">
-        <Grid>
-            <Ellipse 
-                Width="{Binding Path=Radius}"
-                Height="{Binding Path=Radius}"
-                Stroke="Black"
-                StrokeThickness="{Binding Path=Width}"/>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type ui:CircleGeometryVm}">
+            <Grid>
+                <Ellipse
+                    Width="{Binding Path= Radius}"
+                    Height="{Binding Path=Radius}"
+                    Stroke="Black"
+                    StrokeThickness="{Binding Path=Width}" />
 
-        </Grid>
-    </DataTemplate>
-</Window.Resources>
+            </Grid>
+        </DataTemplate>
+
+        <helpers:GeometryCanvasCoordinatesConverter x:Key="CanvasCoordinatesConverter" />
+
+    </Window.Resources>
 
     <DockPanel>
         <DockPanel DockPanel.Dock="Left">
-            <Button 
-                Content="Line" 
-                Command="{Binding Path=AddLineCommand}" 
+            <Button
+                Content="Line"
+                Command="{Binding Path=AddLineCommand}"
                 DockPanel.Dock="Top"
-                Margin="5"/>
+                Margin="5" />
 
-            <Button 
-                Content="Circle" 
-                Command="{Binding Path=AddCircleCommand}"  
+            <Button
+                Content="Circle"
+                Command="{Binding Path=AddCircleCommand}"
                 DockPanel.Dock="Top"
-                Margin="5"/>
+                Margin="5" />
 
-            <Button 
-                Content="Rectangle" 
-                Command="{Binding Path=AddRectangleCommand}"  
+            <Button
+                Content="Rectangle"
+                Command="{Binding Path=AddRectangleCommand}"
                 DockPanel.Dock="Top"
-                Margin="5"/>
+                Margin="5" />
 
-            <StackPanel/>
+            <StackPanel />
         </DockPanel>
+
         <ItemsControl ItemsSource="{Binding Path=Geometry}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Canvas/>
+                    <Canvas />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ContentControl />
+                    <ContentControl Content="{Binding}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter
+                        Property="Canvas.Left">
+                        <Setter.Value>
+                            <Binding Converter="{StaticResource CanvasCoordinatesConverter}">
+                                <Binding.ConverterParameter>
+                                    <system:Boolean>True</system:Boolean>
+                                </Binding.ConverterParameter>
+                            </Binding>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Setter
+                        Property="Canvas.Top">
+                        <Setter.Value>
+                            <Binding Converter="{StaticResource CanvasCoordinatesConverter}">
+                                <Binding.ConverterParameter>
+                                    <system:Boolean>False</system:Boolean>
+                                </Binding.ConverterParameter>
+                            </Binding>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
         </ItemsControl>
+
     </DockPanel>
 </Window>

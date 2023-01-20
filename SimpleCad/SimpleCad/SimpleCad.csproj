@@ -57,9 +57,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\GeometryCanvasCoordinatesConverter.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
+    <Compile Include="UI\AddCircleCommand.cs" />
     <Compile Include="UI\CircleGeometryVm.cs" />
     <Compile Include="UI\LineGeometryVm.cs" />
     <Compile Include="UI\ProjectGeometryVm.cs" />
