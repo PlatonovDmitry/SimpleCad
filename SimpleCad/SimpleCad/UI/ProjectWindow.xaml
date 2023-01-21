@@ -7,6 +7,7 @@
         xmlns:ui="clr-namespace:SimpleCad.UI"
         xmlns:helpers="clr-namespace:SimpleCad.Helpers"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:geometry="clr-namespace:SimpleCad.UI.Geometry"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         d:DataContext="{d:DesignInstance ui:ProjectVm}"
@@ -14,15 +15,8 @@
         x:Name="Root">
 
     <Window.Resources>
-        <DataTemplate DataType="{x:Type ui:CircleGeometryVm}">
-            <Grid>
-                <Ellipse
-                    Width="{Binding Path= Radius}"
-                    Height="{Binding Path=Radius}"
-                    Stroke="Black"
-                    StrokeThickness="{Binding Path=Width}" />
-
-            </Grid>
+        <DataTemplate DataType="{x:Type geometry:CircleGeometryVm}">
+            <geometry:CircleGeometryControl/>
         </DataTemplate>
 
         <helpers:GeometryCanvasCoordinatesConverter x:Key="CanvasCoordinatesConverter" />

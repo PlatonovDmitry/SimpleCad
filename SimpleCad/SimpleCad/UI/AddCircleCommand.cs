@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SimpleCad.Models;
+using SimpleCad.UI.Geometry;
 
 namespace SimpleCad.UI
 {

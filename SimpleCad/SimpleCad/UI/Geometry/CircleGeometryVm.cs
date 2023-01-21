@@ -1,6 +1,6 @@
 ﻿using SimpleCad.Models;
 
-namespace SimpleCad.UI
+namespace SimpleCad.UI.Geometry
 {
     internal class CircleGeometryVm : ProjectGeometryVm
     {

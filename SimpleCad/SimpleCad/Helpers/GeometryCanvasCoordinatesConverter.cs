@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 using SimpleCad.UI;
+using SimpleCad.UI.Geometry;
 
 namespace SimpleCad.Helpers
 {

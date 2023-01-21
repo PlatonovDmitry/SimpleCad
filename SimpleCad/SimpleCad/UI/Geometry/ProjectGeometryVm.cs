@@ -3,13 +3,15 @@ using System.Runtime.CompilerServices;
 using SimpleCad.Annotations;
 using SimpleCad.Models;
 
-namespace SimpleCad.UI
+namespace SimpleCad.UI.Geometry
 {
     internal class ProjectGeometryVm : INotifyPropertyChanged
     {
         protected ProjectGeometry _geometry;
         private int _color;
         private int _width;
+        private bool _isMouseOver;
+        private bool _isSelected;
 
         public ProjectGeometryVm(ProjectGeometry geometry)
         {
@@ -40,6 +42,25 @@ namespace SimpleCad.UI
             }
         }
 
+        public bool IsMouseOver
+        {
+            get => _isMouseOver;
+            set
+            {
+                _isMouseOver = value;
+                OnPropertyChanged(nameof(IsMouseOver));
+            }
+        }
+
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                OnPropertyChanged(nameof(IsSelected));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

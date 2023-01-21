@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using SimpleCad.Annotations;
 using SimpleCad.Models;
+using SimpleCad.UI.Geometry;
 
 namespace SimpleCad.UI
 {

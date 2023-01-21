@@ -63,11 +63,18 @@
     <Compile Include="Repositories\IProjectRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="UI\AddCircleCommand.cs" />
-    <Compile Include="UI\CircleGeometryVm.cs" />
-    <Compile Include="UI\LineGeometryVm.cs" />
-    <Compile Include="UI\ProjectGeometryVm.cs" />
+    <Compile Include="UI\Geometry\CircleGeometryControl.xaml.cs">
+      <DependentUpon>CircleGeometryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Geometry\CircleGeometryVm.cs" />
+    <Compile Include="UI\Geometry\LineGeometryVm.cs" />
+    <Compile Include="UI\Geometry\ProjectGeometryVm.cs" />
     <Compile Include="UI\ProjectVm.cs" />
-    <Compile Include="UI\RectangleGeometryVm.cs" />
+    <Compile Include="UI\Geometry\RectangleGeometryVm.cs" />
+    <Page Include="UI\Geometry\CircleGeometryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\ProjectWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
