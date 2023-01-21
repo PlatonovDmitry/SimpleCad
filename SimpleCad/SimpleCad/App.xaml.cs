@@ -23,7 +23,7 @@ namespace SimpleCad
                 Center = new PointGeometry(0,0),
                 Radius = 100,
                 Color = 52,
-                Width = 10
+                Width = 3
             });
             var vm = new ProjectVm(project);
             vm.Load();

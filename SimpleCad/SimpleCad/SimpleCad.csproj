@@ -58,6 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\GeometryCanvasCoordinatesConverter.cs" />
+    <Compile Include="Helpers\ParentOfTypeExtension.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />

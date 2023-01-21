@@ -1,4 +1,8 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using SimpleCad.Helpers;
 
 namespace SimpleCad.UI
 {
@@ -11,6 +15,39 @@ namespace SimpleCad.UI
         {
             InitializeComponent();
             DataContext = vm;
+        }
+
+        private Point _startMousePoint;
+        
+        private void UIElement_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is UIElement caughtElement)
+            {
+                caughtElement.CaptureMouse();
+            }
+        }
+
+        private void UIElement_OnMouseMove(object sender, MouseEventArgs e)
+        {
+            var curMousePoint = e.GetPosition(Root);
+            if (sender is UIElement caughtElement && caughtElement.IsMouseCaptured)
+            {
+                var contentPresenter = caughtElement.ParentOfType<ContentPresenter>();
+                
+                var left = Canvas.GetLeft(contentPresenter);
+                var top = Canvas.GetTop(contentPresenter);
+                Canvas.SetLeft(contentPresenter, left + curMousePoint.X - _startMousePoint.X);
+                Canvas.SetTop(contentPresenter, top + curMousePoint.Y - _startMousePoint.Y);
+            }
+            _startMousePoint = curMousePoint;
+        }
+
+        private void UIElement_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is UIElement caughtElement && caughtElement.IsMouseCaptured)
+            {
+                caughtElement.ReleaseMouseCapture();
+            }
         }
     }
 }

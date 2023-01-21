@@ -10,7 +10,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         d:DataContext="{d:DesignInstance ui:ProjectVm}"
-        x:ClassModifier="internal">
+        x:ClassModifier="internal"
+        x:Name="Root">
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type ui:CircleGeometryVm}">
@@ -54,12 +55,17 @@
         <ItemsControl ItemsSource="{Binding Path=Geometry}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Canvas />
+                    <Canvas Background="Bisque"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ContentControl Content="{Binding}" />
+                    <ContentControl 
+                        AllowDrop="True"
+                        Content="{Binding}" 
+                        MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"
+                        MouseMove="UIElement_OnMouseMove"
+                        MouseLeftButtonUp="UIElement_OnMouseLeftButtonUp"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemContainerStyle>
@@ -67,7 +73,10 @@
                     <Setter
                         Property="Canvas.Left">
                         <Setter.Value>
-                            <Binding Converter="{StaticResource CanvasCoordinatesConverter}">
+                            <Binding
+                                Converter="{StaticResource CanvasCoordinatesConverter}" 
+                                Mode="TwoWay"
+                                Path=".">
                                 <Binding.ConverterParameter>
                                     <system:Boolean>True</system:Boolean>
                                 </Binding.ConverterParameter>
@@ -78,7 +87,10 @@
                     <Setter
                         Property="Canvas.Top">
                         <Setter.Value>
-                            <Binding Converter="{StaticResource CanvasCoordinatesConverter}">
+                            <Binding 
+                                Converter="{StaticResource CanvasCoordinatesConverter}"
+                                Mode="TwoWay"
+                                Path=".">
                                 <Binding.ConverterParameter>
                                     <system:Boolean>False</system:Boolean>
                                 </Binding.ConverterParameter>
