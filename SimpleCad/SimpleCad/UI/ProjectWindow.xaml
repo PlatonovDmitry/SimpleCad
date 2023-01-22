@@ -57,9 +57,9 @@
                     <ContentControl 
                         AllowDrop="True"
                         Content="{Binding}" 
-                        MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"
+                        MouseDown="UIElement_OnMouseDown"
                         MouseMove="UIElement_OnMouseMove"
-                        MouseLeftButtonUp="UIElement_OnMouseLeftButtonUp"/>
+                        MouseUp="UIElement_OnMouseUp"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemContainerStyle>
@@ -68,12 +68,8 @@
                         Property="Canvas.Left">
                         <Setter.Value>
                             <Binding
-                                Converter="{StaticResource CanvasCoordinatesConverter}" 
                                 Mode="TwoWay"
-                                Path=".">
-                                <Binding.ConverterParameter>
-                                    <system:Boolean>True</system:Boolean>
-                                </Binding.ConverterParameter>
+                                Path="PositionLeft">
                             </Binding>
                         </Setter.Value>
                     </Setter>
@@ -82,12 +78,8 @@
                         Property="Canvas.Top">
                         <Setter.Value>
                             <Binding 
-                                Converter="{StaticResource CanvasCoordinatesConverter}"
                                 Mode="TwoWay"
-                                Path=".">
-                                <Binding.ConverterParameter>
-                                    <system:Boolean>False</system:Boolean>
-                                </Binding.ConverterParameter>
+                                Path="PositionTop">
                             </Binding>
                         </Setter.Value>
                     </Setter>

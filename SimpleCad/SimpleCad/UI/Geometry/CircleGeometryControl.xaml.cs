@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SimpleCad.UI.Geometry
@@ -25,27 +14,48 @@ namespace SimpleCad.UI.Geometry
             InitializeComponent();
         }
 
-        private void UIElement_OnMouseEnter(object sender, MouseEventArgs e)
+        private void TopPoint_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (this.DataContext is CircleGeometryVm circle)
+            if (sender is PointGeometryControl topPoint)
             {
-                if (!circle.IsSelected)
+                topPoint.CaptureMouse();
+            }
+        }
+
+        private void TopPoint_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is PointGeometryControl topPoint && topPoint.IsMouseCaptured)
+            {
+                topPoint.ReleaseMouseCapture();
+            }
+        }
+
+        private void TopPoint_OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (sender is PointGeometryControl topPoint 
+                && topPoint.IsMouseCaptured
+                && DataContext is CircleGeometryVm circle)
+            {
+                var curMousePoint = e.GetPosition(CenterPoint);
+                circle.Diametr = -2* curMousePoint.Y - CenterPoint.ActualHeight;
+            }
+        }
+
+        private void Circle_OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is Ellipse ellipse && DataContext is CircleGeometryVm circle)
+            {
+                if(!circle.IsSelected)
                     circle.IsMouseOver = true;
             }
         }
 
-        private void UIElement_OnMouseLeave(object sender, MouseEventArgs e)
+        private void Circle_OnMouseLeave(object sender, MouseEventArgs e)
         {
-            if (this.DataContext is CircleGeometryVm circle)
+            if (sender is Ellipse ellipse && DataContext is CircleGeometryVm circle)
             {
                 circle.IsMouseOver = false;
             }
-            
-        }
-
-        private void UIElement_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            
         }
     }
 }

@@ -15,7 +15,9 @@ namespace SimpleCad.Helpers
             switch (value)
             {
                 case CircleGeometryVm circle:
-                    return 100 - (isX ? circle.Center.X : circle.Center.Y);
+                    return 200 + (isX 
+                        ? circle.CenterX - circle.Diametr / 2 
+                        : -circle.Diametr / 2 - circle.CenterY);
             }
 
             return 0;

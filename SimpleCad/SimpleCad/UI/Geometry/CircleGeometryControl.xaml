@@ -10,12 +10,12 @@
              x:Name="Root">
     <Grid>
         <Ellipse
-            Width="{Binding Path=Radius}"
-            Height="{Binding Path=Radius}"
-            StrokeThickness="{Binding Path=Width}" 
-            MouseEnter="UIElement_OnMouseEnter"
-            MouseLeave="UIElement_OnMouseLeave"
-            MouseRightButtonUp="UIElement_OnMouseRightButtonUp">
+            x:Name="Circle"
+            Width="{Binding Path=Diametr, Mode=TwoWay}"
+            Height="{Binding Path=Diametr, Mode=TwoWay}"
+            StrokeThickness="{Binding Path=Width}"
+            MouseEnter="Circle_OnMouseEnter"
+            MouseLeave="Circle_OnMouseLeave">
             <Ellipse.Style>
                 <Style>
                     <Setter Property="Ellipse.Stroke" >
@@ -35,5 +35,23 @@
                 </Style>
             </Ellipse.Style>
         </Ellipse>
+
+        <local:PointGeometryControl 
+            x:Name="CenterPoint"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            Cursor="SizeAll"
+            CoordinateX="{Binding Path=CenterX, Mode=TwoWay}"
+            CoordinateY="{Binding Path=CenterY, Mode=TwoWay}"/>
+        
+        <local:PointGeometryControl 
+            x:Name="TopPoint"
+            Cursor="SizeNS"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Top"
+            MouseLeftButtonDown="TopPoint_OnMouseLeftButtonDown"
+            MouseLeftButtonUp="TopPoint_OnMouseLeftButtonUp"
+            MouseMove="TopPoint_OnMouseMove"/>
+
     </Grid>
 </UserControl>

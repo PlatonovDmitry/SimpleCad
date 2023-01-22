@@ -1,11 +1,9 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using SimpleCad.Annotations;
+﻿using SimpleCad.Helpers;
 using SimpleCad.Models;
 
 namespace SimpleCad.UI.Geometry
 {
-    internal class ProjectGeometryVm : INotifyPropertyChanged
+    internal abstract class ProjectGeometryVm : NotifyObject
     {
         protected ProjectGeometry _geometry;
         private int _color;
@@ -21,53 +19,34 @@ namespace SimpleCad.UI.Geometry
             Width = geometry.Width;
         }
 
+        public abstract double PositionLeft { get; set; }
+
+        public abstract double PositionTop { get; set; }
+
 
         public int Color
         {
             get => _color;
-            set
-            {
-                _color = value; 
-                OnPropertyChanged(nameof(Color));
-            }
+            set => Set(ref _color, value);
         }
 
         public int Width
         {
             get => _width;
-            set
-            {
-                _width = value;
-                OnPropertyChanged(nameof(Width));
-            }
+            set => Set(ref _width, value);
         }
 
         public bool IsMouseOver
         {
             get => _isMouseOver;
-            set
-            {
-                _isMouseOver = value;
-                OnPropertyChanged(nameof(IsMouseOver));
-            }
+            set => Set(ref _isMouseOver, value);
         }
 
         public bool IsSelected
         {
             get => _isSelected;
-            set
-            {
-                _isSelected = value;
-                OnPropertyChanged(nameof(IsSelected));
-            }
+            set => Set(ref _isSelected, value);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

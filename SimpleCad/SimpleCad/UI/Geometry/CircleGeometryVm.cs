@@ -1,35 +1,62 @@
-﻿using SimpleCad.Models;
+﻿using System.ComponentModel;
+using SimpleCad.Helpers;
+using SimpleCad.Models;
 
 namespace SimpleCad.UI.Geometry
 {
     internal class CircleGeometryVm : ProjectGeometryVm
     {
-        private double _radius;
-        private PointGeometry _center;
-
+        private double _diametr;
+        private double _centerX;
+        private double _centerY;
+        
         public CircleGeometryVm(CircleGeometry geometry) : base(geometry)
         {
-            Radius = geometry.Radius;
-            Center = geometry.Center;
+            Diametr = 2 * geometry.Radius;
+            CenterX = geometry.Center.X;
+            CenterY = geometry.Center.Y;
         }
 
-        public PointGeometry Center
+        public override double PositionLeft
         {
-            get => _center;
+            get => Constants.FIELD_CENTER_X + _centerX - _diametr/2;
+            set => _centerX = value + _diametr /2;
+        }
+
+        public override double PositionTop
+        {
+            get => Constants.FIELD_CENTER_Y - _centerY - _diametr / 2;
+            set => _centerY = _diametr / 2 - value;
+        }
+
+        public double CenterX
+        {
+            get => _centerX;
             set
             {
-                _center = value;
-                OnPropertyChanged(nameof(Center));
+                Set(ref _centerX, value);
+                OnPropertyChanged(nameof(PositionLeft));
             }
         }
 
-        public double Radius
+        public double CenterY
         {
-            get => _radius;
+            get => _centerY;
             set
             {
-                _radius = value;
-                OnPropertyChanged(nameof(Radius));
+                Set(ref _centerY, value);
+                OnPropertyChanged(nameof(PositionTop));
+            }
+        }
+
+        public double Diametr
+        {
+            get => _diametr;
+            set
+            {
+                Set(ref _diametr, value);
+                OnPropertyChanged(nameof(PositionLeft));
+                OnPropertyChanged(nameof(PositionTop));
             }
         }
     }

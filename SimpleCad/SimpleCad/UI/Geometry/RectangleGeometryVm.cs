@@ -2,6 +2,7 @@
 
 namespace SimpleCad.UI.Geometry
 {
+    /*
     internal class RectangleGeometryVm : ProjectGeometryVm
     {
         private PointGeometry _leftBottom;
@@ -33,4 +34,5 @@ namespace SimpleCad.UI.Geometry
             }
         }
     }
+    */
 }
