@@ -20,7 +20,7 @@
                 <Style>
                     <Setter Property="Ellipse.Stroke" >
                         <Setter.Value>
-                            <SolidColorBrush Color="Black"/>
+                            <SolidColorBrush Color="{Binding Color}"/>
                         </Setter.Value>
                     </Setter>
                     <Style.Triggers>
