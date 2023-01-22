@@ -15,7 +15,10 @@
             Height="{Binding Path=Diametr, Mode=TwoWay}"
             StrokeThickness="{Binding Path=Width}"
             MouseEnter="Circle_OnMouseEnter"
-            MouseLeave="Circle_OnMouseLeave">
+            MouseLeave="Circle_OnMouseLeave"
+            MouseLeftButtonDown="Circle_OnMouseLeftButtonDown"
+            MouseLeftButtonUp="Circle_OnMouseLeftButtonUp"
+            MouseMove="Circle_OnMouseMove">
             <Ellipse.Style>
                 <Style>
                     <Setter Property="Ellipse.Stroke" >
@@ -44,14 +47,5 @@
             CoordinateX="{Binding Path=CenterX, Mode=TwoWay}"
             CoordinateY="{Binding Path=CenterY, Mode=TwoWay}"/>
         
-        <local:PointGeometryControl 
-            x:Name="TopPoint"
-            Cursor="SizeNS"
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Top"
-            MouseLeftButtonDown="TopPoint_OnMouseLeftButtonDown"
-            MouseLeftButtonUp="TopPoint_OnMouseLeftButtonUp"
-            MouseMove="TopPoint_OnMouseMove"/>
-
     </Grid>
 </UserControl>

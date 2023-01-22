@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
 
@@ -14,22 +16,6 @@ namespace SimpleCad.UI.Geometry
             InitializeComponent();
         }
 
-        private void TopPoint_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is PointGeometryControl topPoint)
-            {
-                topPoint.CaptureMouse();
-            }
-        }
-
-        private void TopPoint_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is PointGeometryControl topPoint && topPoint.IsMouseCaptured)
-            {
-                topPoint.ReleaseMouseCapture();
-            }
-        }
-
         private void TopPoint_OnMouseMove(object sender, MouseEventArgs e)
         {
             if (sender is PointGeometryControl topPoint 
@@ -41,12 +27,34 @@ namespace SimpleCad.UI.Geometry
             }
         }
 
+        private void SetCursor(Ellipse ellipse, CircleGeometryVm circle, MouseEventArgs e)
+        {
+            var curMousePoint = e.GetPosition(CenterPoint);
+            var delta = circle.Diametr * Math.Sin(Math.PI / 12) / 2;
+            if (Math.Sign(curMousePoint.Y) * curMousePoint.Y < delta)
+            {
+                ellipse.Cursor = Cursors.SizeWE;
+            }
+            else if (Math.Sign(curMousePoint.X) * curMousePoint.X < delta)
+            {
+                ellipse.Cursor = Cursors.SizeNS;
+            }
+            else
+            {
+                ellipse.Cursor = Math.Sign(curMousePoint.X) == Math.Sign(curMousePoint.Y)
+                    ? Cursors.SizeNWSE
+                    : Cursors.SizeNESW;
+            }
+        }
+
         private void Circle_OnMouseEnter(object sender, MouseEventArgs e)
         {
             if (sender is Ellipse ellipse && DataContext is CircleGeometryVm circle)
             {
                 if(!circle.IsSelected)
                     circle.IsMouseOver = true;
+
+                SetCursor(ellipse, circle, e);
             }
         }
 
@@ -55,6 +63,41 @@ namespace SimpleCad.UI.Geometry
             if (sender is Ellipse ellipse && DataContext is CircleGeometryVm circle)
             {
                 circle.IsMouseOver = false;
+                ellipse.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void Circle_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Ellipse ellipse)
+            {
+                ellipse.CaptureMouse();
+            }
+        }
+
+        private void Circle_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Ellipse ellipse)
+            {
+                ellipse.ReleaseMouseCapture();
+            }
+        }
+
+        private void Circle_OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (sender is Ellipse ellipse
+                && DataContext is CircleGeometryVm circle)
+            {
+                if(circle.IsMouseOver)
+                    SetCursor(ellipse, circle, e);
+
+                if(ellipse.IsMouseCaptured)
+                {
+                    var curMousePoint = e.GetPosition(CenterPoint);
+                    var curX = curMousePoint.X - CenterPoint.ActualWidth;
+                    var curY = curMousePoint.Y - CenterPoint.ActualHeight;
+                    circle.Diametr = 2 * Math.Sqrt(Math.Pow(curX, 2) + Math.Pow(curY, 2));
+                }
             }
         }
     }
