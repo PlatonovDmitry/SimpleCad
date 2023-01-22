@@ -57,14 +57,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums\RectangleSide.cs" />
     <Compile Include="Helpers\Constants.cs" />
-    <Compile Include="Helpers\GeometryCanvasCoordinatesConverter.cs" />
     <Compile Include="Helpers\NotifyObject.cs" />
     <Compile Include="Helpers\ParentOfTypeExtension.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="UI\AddCircleCommand.cs" />
+    <Compile Include="UI\AddRectangleCommand.cs" />
     <Compile Include="UI\Geometry\CircleGeometryControl.xaml.cs">
       <DependentUpon>CircleGeometryControl.xaml</DependentUpon>
     </Compile>
@@ -75,6 +76,9 @@
     <Compile Include="UI\Geometry\LineGeometryVm.cs" />
     <Compile Include="UI\Geometry\PointGeometryVm.cs" />
     <Compile Include="UI\Geometry\ProjectGeometryVm.cs" />
+    <Compile Include="UI\Geometry\RectangleGeometryControl.xaml.cs">
+      <DependentUpon>RectangleGeometryControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\ProjectVm.cs" />
     <Compile Include="UI\Geometry\RectangleGeometryVm.cs" />
     <Page Include="UI\Geometry\CircleGeometryControl.xaml">
@@ -82,6 +86,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Geometry\PointGeometryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Geometry\RectangleGeometryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

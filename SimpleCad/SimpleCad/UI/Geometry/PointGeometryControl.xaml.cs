@@ -82,7 +82,7 @@ namespace SimpleCad.UI.Geometry
             {
                 var curMousePoint = e.GetPosition(point);
                 CoordinateX += curMousePoint.X;
-                CoordinateY -= curMousePoint.Y;
+                CoordinateY += curMousePoint.Y;
             }
         }
     }

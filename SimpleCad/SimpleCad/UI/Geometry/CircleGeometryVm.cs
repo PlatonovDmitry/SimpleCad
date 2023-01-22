@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using SimpleCad.Helpers;
+﻿using SimpleCad.Helpers;
 using SimpleCad.Models;
 
 namespace SimpleCad.UI.Geometry
@@ -14,20 +13,12 @@ namespace SimpleCad.UI.Geometry
         {
             Diametr = 2 * geometry.Radius;
             CenterX = geometry.Center.X;
-            CenterY = geometry.Center.Y;
+            CenterY = -geometry.Center.Y;
         }
 
-        public override double PositionLeft
-        {
-            get => Constants.FIELD_CENTER_X + _centerX - _diametr/2;
-            set => _centerX = value + _diametr /2;
-        }
+        public override double PositionLeft => Constants.FIELD_CENTER_X + _centerX - _diametr/2;
 
-        public override double PositionTop
-        {
-            get => Constants.FIELD_CENTER_Y - _centerY - _diametr / 2;
-            set => _centerY = _diametr / 2 - value;
-        }
+        public override double PositionTop => Constants.FIELD_CENTER_Y + _centerY - _diametr / 2;
 
         public double CenterX
         {

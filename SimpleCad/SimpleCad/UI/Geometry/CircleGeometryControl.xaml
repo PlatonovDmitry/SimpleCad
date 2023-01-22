@@ -13,7 +13,7 @@
             x:Name="Circle"
             Width="{Binding Path=Diametr, Mode=TwoWay}"
             Height="{Binding Path=Diametr, Mode=TwoWay}"
-            StrokeThickness="{Binding Path=Width}"
+            StrokeThickness="{Binding Path=Thickness}"
             MouseEnter="Circle_OnMouseEnter"
             MouseLeave="Circle_OnMouseLeave"
             MouseLeftButtonDown="Circle_OnMouseLeftButtonDown"

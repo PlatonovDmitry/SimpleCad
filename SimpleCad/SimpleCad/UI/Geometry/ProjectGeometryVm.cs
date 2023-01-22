@@ -9,7 +9,7 @@ namespace SimpleCad.UI.Geometry
     {
         protected ProjectGeometry _geometry;
         private Color _color;
-        private int _width;
+        private int _thickness;
         private bool _isMouseOver;
         private bool _isSelected;
 
@@ -25,12 +25,12 @@ namespace SimpleCad.UI.Geometry
             byte b = arrBytes[2];
 
             Color = Color.FromRgb(r, g, b);
-            Width = geometry.Width;
+            Thickness = geometry.Thickness;
         }
 
-        public abstract double PositionLeft { get; set; }
+        public abstract double PositionLeft { get; }
 
-        public abstract double PositionTop { get; set; }
+        public abstract double PositionTop { get; }
 
 
         public Color Color
@@ -39,10 +39,10 @@ namespace SimpleCad.UI.Geometry
             set => Set(ref _color, value);
         }
 
-        public int Width
+        public int Thickness
         {
-            get => _width;
-            set => Set(ref _width, value);
+            get => _thickness;
+            set => Set(ref _thickness, value);
         }
 
         public bool IsMouseOver

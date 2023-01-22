@@ -21,8 +21,18 @@ namespace SimpleCad
                 Center = new PointGeometry(0,0),
                 Radius = 100,
                 Color = val,
-                Width = 3
+                Thickness = 3
             });
+
+            project.Geometry.Add(new RectangleGeometry()
+            {
+                LeftTop = new PointGeometry(100, 100),
+                RightBottom = new PointGeometry(200, -100),
+                Color = val,
+                Thickness = 3
+            });
+
+
             var vm = new ProjectVm(project);
             vm.Load();
 

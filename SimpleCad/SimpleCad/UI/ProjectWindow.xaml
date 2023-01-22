@@ -3,10 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SimpleCad"
         xmlns:ui="clr-namespace:SimpleCad.UI"
-        xmlns:helpers="clr-namespace:SimpleCad.Helpers"
-        xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:geometry="clr-namespace:SimpleCad.UI.Geometry"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
@@ -16,11 +13,12 @@
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type geometry:CircleGeometryVm}">
-            <geometry:CircleGeometryControl/>
+            <geometry:CircleGeometryControl />
         </DataTemplate>
 
-        <helpers:GeometryCanvasCoordinatesConverter x:Key="CanvasCoordinatesConverter" />
-
+        <DataTemplate DataType="{x:Type geometry:RectangleGeometryVm}">
+            <geometry:RectangleGeometryControl />
+        </DataTemplate>
     </Window.Resources>
 
     <DockPanel>
@@ -49,17 +47,17 @@
         <ItemsControl ItemsSource="{Binding Path=Geometry}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Canvas Background="Bisque"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Canvas Background="Bisque" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ContentControl 
+                    <ContentControl
                         AllowDrop="True"
-                        Content="{Binding}" 
+                        Content="{Binding}"
                         MouseDown="UIElement_OnMouseDown"
                         MouseMove="UIElement_OnMouseMove"
-                        MouseUp="UIElement_OnMouseUp"/>
+                        MouseUp="UIElement_OnMouseUp" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemContainerStyle>
@@ -67,20 +65,14 @@
                     <Setter
                         Property="Canvas.Left">
                         <Setter.Value>
-                            <Binding
-                                Mode="TwoWay"
-                                Path="PositionLeft">
-                            </Binding>
+                            <Binding Path="PositionLeft"/>
                         </Setter.Value>
                     </Setter>
 
                     <Setter
                         Property="Canvas.Top">
                         <Setter.Value>
-                            <Binding 
-                                Mode="TwoWay"
-                                Path="PositionTop">
-                            </Binding>
+                            <Binding Path="PositionTop"/>
                         </Setter.Value>
                     </Setter>
                 </Style>

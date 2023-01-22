@@ -10,7 +10,7 @@ namespace SimpleCad.Models
     {
         public int Color { get; set; }
 
-        public int Width { get; set; }
+        public int Thickness { get; set; }
 
         
     }

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using SimpleCad.Annotations;
 using SimpleCad.Models;
@@ -24,6 +19,7 @@ namespace SimpleCad.UI
             _project = project;
 
             AddCircleCommand = new AddCircleCommand(this);
+            AddRectangleCommand = new AddRectangleCommand(this);
         }
 
         public ObservableCollection<ProjectGeometryVm> Geometry
@@ -55,9 +51,9 @@ namespace SimpleCad.UI
                     //case LineGeometry line:
                     //    newGeometry = new LineGeometryVm(line);
                     //    break;
-                    //case RectangleGeometry rectangle:
-                    //    newGeometry = new RectangleGeometryVm(rectangle);
-                    //    break;
+                    case RectangleGeometry rectangle:
+                        newGeometry = new RectangleGeometryVm(rectangle);
+                        break;
                 }
 
                 if(newGeometry != null)
