@@ -1,7 +1,5 @@
 ﻿using System.Linq;
 using System.Windows;
-using SimpleCad.Helpers;
-using SimpleCad.Models;
 
 namespace SimpleCad.UI.Geometry
 {
@@ -11,10 +9,10 @@ namespace SimpleCad.UI.Geometry
         private double[] _y;
         private double[] _x;
 
-        public LineGeometryVm(LineGeometry geometry) : base(geometry)
+        public LineGeometryVm() 
         {
-            _x = new[] { Constants.FIELD_CENTER_X + geometry.StartPoint.X, Constants.FIELD_CENTER_X + geometry.EndPoint.X };
-            _y = new[] { Constants.FIELD_CENTER_Y - geometry.StartPoint.Y, Constants.FIELD_CENTER_Y - geometry.EndPoint.Y };
+            _x = new[] { 0d, 0};
+            _y = new[] { 0d, 0};
         }
 
         public override double PositionLeft => _x.Min();

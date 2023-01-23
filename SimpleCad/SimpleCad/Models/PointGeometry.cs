@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCad.Models
 {
+    [Serializable]
     internal struct PointGeometry
     {
         public PointGeometry(double x, double y)

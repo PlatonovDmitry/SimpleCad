@@ -59,22 +59,24 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\Converters\InvertAlignmentConverter.cs" />
     <Compile Include="Helpers\Enums\RectangleSide.cs" />
-    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\Extensions\CircleGeometryExtension.cs" />
+    <Compile Include="Helpers\Extensions\LineGeometryExtension.cs" />
+    <Compile Include="Helpers\Extensions\ProjectExtension.cs" />
+    <Compile Include="Helpers\Extensions\ProjectGeometryExtension.cs" />
+    <Compile Include="Helpers\Extensions\RectangleGeometryExtension.cs" />
     <Compile Include="Helpers\NotifyObject.cs" />
     <Compile Include="Helpers\ParentOfTypeExtension.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
-    <Compile Include="UI\AddCircleCommand.cs" />
-    <Compile Include="UI\AddLineCommand.cs" />
-    <Compile Include="UI\AddRectangleCommand.cs" />
-    <Compile Include="UI\CanvasControl.xaml.cs">
-      <DependentUpon>CanvasControl.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="UI\Project\AddCircleCommand.cs" />
+    <Compile Include="UI\Project\AddLineCommand.cs" />
+    <Compile Include="UI\Project\AddRectangleCommand.cs" />
     <Compile Include="UI\Geometry\CircleGeometryControl.xaml.cs">
       <DependentUpon>CircleGeometryControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Geometry\CircleGeometryVm.cs" />
+    <Compile Include="UI\Project\DeleteGeometryCommand.cs" />
     <Compile Include="UI\Geometry\LineGeometryControl.xaml.cs">
       <DependentUpon>LineGeometryControl.xaml</DependentUpon>
     </Compile>
@@ -87,12 +89,18 @@
     <Compile Include="UI\Geometry\RectangleGeometryControl.xaml.cs">
       <DependentUpon>RectangleGeometryControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\ProjectVm.cs" />
+    <Compile Include="UI\MainVm.cs" />
+    <Compile Include="UI\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NewProjectCommand.cs" />
+    <Compile Include="UI\OpenProjectCommand.cs" />
     <Compile Include="UI\Geometry\RectangleGeometryVm.cs" />
-    <Page Include="UI\CanvasControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="UI\Project\CanvasControl.xaml.cs">
+      <DependentUpon>CanvasControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Project\ProjectVm.cs" />
+    <Compile Include="UI\SaveProjectCommand.cs" />
     <Page Include="UI\Geometry\CircleGeometryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,18 +117,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\ProjectWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="UI\MainWindow.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UI\ProjectWindow.xaml.cs">
-      <DependentUpon>ProjectWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="UI\Project\CanvasControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\CircleGeometry.cs" />

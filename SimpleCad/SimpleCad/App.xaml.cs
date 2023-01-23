@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using SimpleCad.Models;
+﻿using System.Windows;
 using SimpleCad.UI;
 
 namespace SimpleCad
@@ -12,39 +10,9 @@ namespace SimpleCad
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var project = new Project();
-
-            var val = BitConverter.ToInt32(new byte[] { 0, 255, 0, 0 }, 0);
-
-            project.Geometry.Add(new CircleGeometry()
-            {
-                Center = new PointGeometry(0,0),
-                Radius = 100,
-                Color = val,
-                Thickness = 3
-            });
-
-            project.Geometry.Add(new RectangleGeometry()
-            {
-                LeftTop = new PointGeometry(100, 100),
-                RightBottom = new PointGeometry(200, -100),
-                Color = val,
-                Thickness = 3
-            });
-
-            project.Geometry.Add(new LineGeometry()
-            {
-                StartPoint = new PointGeometry(150, 100),
-                EndPoint = new PointGeometry(250, -100),
-                Color = val,
-                Thickness = 3
-            });
-
-
-            var vm = new ProjectVm(project);
-            vm.Load();
-
-            MainWindow = new ProjectWindow(vm);
+            var vm = new MainVm();
+            
+            MainWindow = new MainWindow(vm);
             MainWindow.Show();
         }
     }

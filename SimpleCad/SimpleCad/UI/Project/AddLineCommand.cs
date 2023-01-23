@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
-using SimpleCad.Models;
+using System.Windows.Media;
 using SimpleCad.UI.Geometry;
 
-namespace SimpleCad.UI
+namespace SimpleCad.UI.Project
 {
     internal class AddLineCommand : ICommand
     {
@@ -18,14 +18,15 @@ namespace SimpleCad.UI
 
         public void Execute(object parameter)
         {
-            var circle = new LineGeometry()
+            _vm.Geometry.Add(new LineGeometryVm()
             {
-                StartPoint = new PointGeometry(-50, 50),
-                EndPoint = new PointGeometry(50, -50),
+                StartPointX = 50,
+                StartPointY = 50,
+                EndPointX = 100,
+                EndPointY = 100,
                 Thickness = 2,
-                Color = 1,
-            };
-            _vm.Geometry.Add(new LineGeometryVm(circle));
+                Color = Colors.Black
+            });
         }
 
         public event EventHandler CanExecuteChanged;

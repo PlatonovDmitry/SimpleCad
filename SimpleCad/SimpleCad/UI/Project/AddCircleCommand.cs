@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
-using SimpleCad.Models;
+using System.Windows.Media;
 using SimpleCad.UI.Geometry;
 
-namespace SimpleCad.UI
+namespace SimpleCad.UI.Project
 {
     internal class AddCircleCommand : ICommand
     {
@@ -18,14 +18,15 @@ namespace SimpleCad.UI
 
         public void Execute(object parameter)
         {
-            var circle = new CircleGeometry()
+            _vm.Geometry.Add(new CircleGeometryVm()
             {
                 Thickness = 2,
-                Center = new PointGeometry(1, 3),
-                Color = 1,
-                Radius = 10,
-            };
-            _vm.Geometry.Add(new CircleGeometryVm(circle));
+                CenterX = 100,
+                CenterY = 100,
+                Color = Colors.Black,
+                Diametr = 50
+                
+            });
         }
 
         public event EventHandler CanExecuteChanged;

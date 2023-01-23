@@ -1,5 +1,4 @@
 ﻿using SimpleCad.Helpers;
-using SimpleCad.Models;
 
 namespace SimpleCad.UI.Geometry
 {
@@ -9,16 +8,9 @@ namespace SimpleCad.UI.Geometry
         private double _centerX;
         private double _centerY;
         
-        public CircleGeometryVm(CircleGeometry geometry) : base(geometry)
-        {
-            Diametr = 2 * geometry.Radius;
-            CenterX = geometry.Center.X;
-            CenterY = -geometry.Center.Y;
-        }
+        public override double PositionLeft => _centerX - _diametr/2;
 
-        public override double PositionLeft => Constants.FIELD_CENTER_X + _centerX - _diametr/2;
-
-        public override double PositionTop => Constants.FIELD_CENTER_Y + _centerY - _diametr / 2;
+        public override double PositionTop => _centerY - _diametr / 2;
 
         public double CenterX
         {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
-using SimpleCad.Models;
+using System.Windows.Media;
 using SimpleCad.UI.Geometry;
 
-namespace SimpleCad.UI
+namespace SimpleCad.UI.Project
 {
     internal class AddRectangleCommand : ICommand
     {
@@ -18,14 +18,15 @@ namespace SimpleCad.UI
 
         public void Execute(object parameter)
         {
-            var circle = new RectangleGeometry()
+            _vm.Geometry.Add(new RectangleGeometryVm()
             {
-                LeftTop = new PointGeometry(-50, 50),
-                RightBottom = new PointGeometry(50, -50),
-                Thickness = 2,
-                Color = 1,
-            };
-            _vm.Geometry.Add(new RectangleGeometryVm(circle));
+                LeftTopX = 50,
+                RightBottomX = 150,
+                LeftTopY = 50,
+                RightBottomY = 150,
+                Color = Colors.Black,
+                Thickness = 2
+            });
         }
 
         public event EventHandler CanExecuteChanged;

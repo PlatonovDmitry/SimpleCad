@@ -1,0 +1,60 @@
+﻿<Window x:Class="SimpleCad.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleCad.UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance local:MainVm}"
+        x:ClassModifier="internal">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Создать" Command="{Binding Path=NewProjectCommand}" />
+                <MenuItem Header="Открыть" Command="{Binding Path=OpenCommand}" />
+                <MenuItem Header="Сохранить" Command="{Binding Path=SaveCommand}" />
+            </MenuItem>
+        </Menu>
+
+        <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+            
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <Button 
+                    Command="{Binding Path=Project.AddLineCommand}"
+                    Margin="5">
+                    <DockPanel>
+                        <TextBlock Text="Линия" DockPanel.Dock="Bottom" TextAlignment="Center" Margin="5"/>
+                        <Line Stroke="Blue" X1="0" X2="30" Y1="0" Y2="30" Margin="5" />
+                    </DockPanel>
+                </Button>
+
+                <Button 
+                    Command="{Binding Path=Project.AddCircleCommand}"
+                    Margin="5">
+                    <DockPanel>
+                        <TextBlock Text="Окружность" DockPanel.Dock="Bottom" TextAlignment="Center" Margin="5"/>
+                        <Ellipse Stroke="Blue" Width="30" Height="30" Margin="5" />
+                    </DockPanel>
+                </Button>
+
+                <Button 
+                    Command="{Binding Path=Project.AddRectangleCommand}"
+                    Margin="5">
+                    <DockPanel>
+                        <TextBlock Text="Прямоугольник" DockPanel.Dock="Bottom" TextAlignment="Center" Margin="5"/>
+                        <Rectangle Stroke="Blue" Width="50" Height="30" Margin="5" />
+                    </DockPanel>
+                </Button>
+            </StackPanel>
+
+            <local:CanvasControl DataContext="{Binding Path=Project}" Grid.Row="1" />
+        </Grid>
+
+
+    </DockPanel>
+</Window>

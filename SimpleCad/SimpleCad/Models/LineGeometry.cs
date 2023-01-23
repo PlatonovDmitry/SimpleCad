@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCad.Models
 {
+    [Serializable]
     internal class LineGeometry : ProjectGeometry
     {
         public PointGeometry StartPoint { get; set; }

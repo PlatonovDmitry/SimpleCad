@@ -1,5 +1,8 @@
-﻿namespace SimpleCad.Models
+﻿using System;
+
+namespace SimpleCad.Models
 {
+    [Serializable]
     internal class RectangleGeometry : ProjectGeometry
     {
         public PointGeometry LeftTop { get; set; }

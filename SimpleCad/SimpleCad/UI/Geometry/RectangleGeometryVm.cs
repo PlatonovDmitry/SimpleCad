@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using SimpleCad.Helpers;
-using SimpleCad.Models;
 
 namespace SimpleCad.UI.Geometry
 {
@@ -12,10 +10,10 @@ namespace SimpleCad.UI.Geometry
         private double[] _y;
         private double[] _x;
 
-        public RectangleGeometryVm(RectangleGeometry geometry) : base(geometry)
+        public RectangleGeometryVm()
         {
-            _x = new[] { Constants.FIELD_CENTER_X + geometry.LeftTop.X, Constants.FIELD_CENTER_X + geometry.RightBottom.X };
-            _y = new[] { Constants.FIELD_CENTER_Y - geometry.LeftTop.Y, Constants.FIELD_CENTER_Y - geometry.RightBottom.Y };
+            _x = new[] { 0D, 0};
+            _y = new[] { 0D, 0};
         }
 
         public override double PositionLeft => _x.Min();
