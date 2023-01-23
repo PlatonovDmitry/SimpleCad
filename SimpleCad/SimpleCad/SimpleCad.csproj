@@ -66,7 +66,11 @@
     <Compile Include="Repositories\IProjectRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="UI\AddCircleCommand.cs" />
+    <Compile Include="UI\AddLineCommand.cs" />
     <Compile Include="UI\AddRectangleCommand.cs" />
+    <Compile Include="UI\CanvasControl.xaml.cs">
+      <DependentUpon>CanvasControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Geometry\CircleGeometryControl.xaml.cs">
       <DependentUpon>CircleGeometryControl.xaml</DependentUpon>
     </Compile>
@@ -85,6 +89,10 @@
     </Compile>
     <Compile Include="UI\ProjectVm.cs" />
     <Compile Include="UI\Geometry\RectangleGeometryVm.cs" />
+    <Page Include="UI\CanvasControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Geometry\CircleGeometryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -11,20 +11,6 @@
         x:ClassModifier="internal"
         x:Name="Root">
 
-    <Window.Resources>
-        <DataTemplate DataType="{x:Type geometry:CircleGeometryVm}">
-            <geometry:CircleGeometryControl />
-        </DataTemplate>
-
-        <DataTemplate DataType="{x:Type geometry:RectangleGeometryVm}">
-            <geometry:RectangleGeometryControl />
-        </DataTemplate>
-
-        <DataTemplate DataType="{x:Type geometry:LineGeometryVm}">
-            <geometry:LineGeometryControl />
-        </DataTemplate>
-    </Window.Resources>
-
     <DockPanel>
         <DockPanel DockPanel.Dock="Left">
             <Button
@@ -48,40 +34,7 @@
             <StackPanel />
         </DockPanel>
 
-        <ItemsControl ItemsSource="{Binding Path=Geometry}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Canvas Background="Bisque" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl
-                        AllowDrop="True"
-                        Content="{Binding}"
-                        MouseDown="UIElement_OnMouseDown"
-                        MouseMove="UIElement_OnMouseMove"
-                        MouseUp="UIElement_OnMouseUp" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemContainerStyle>
-                <Style TargetType="ContentPresenter">
-                    <Setter
-                        Property="Canvas.Left">
-                        <Setter.Value>
-                            <Binding Path="PositionLeft"/>
-                        </Setter.Value>
-                    </Setter>
-
-                    <Setter
-                        Property="Canvas.Top">
-                        <Setter.Value>
-                            <Binding Path="PositionTop"/>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-        </ItemsControl>
+        <ui:CanvasControl />
 
     </DockPanel>
 </Window>

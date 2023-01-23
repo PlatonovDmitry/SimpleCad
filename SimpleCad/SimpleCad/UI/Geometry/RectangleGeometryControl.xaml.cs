@@ -101,7 +101,7 @@ namespace SimpleCad.UI.Geometry
 
         private void UIElement_OnMouseMove(object sender, MouseEventArgs e)
         {
-            if (sender is Rectangle { IsMouseCaptured: true })
+            if (sender is Rectangle rectangle && rectangle.IsMouseCaptured)
             {
                 switch (_resizingSide)
                 {

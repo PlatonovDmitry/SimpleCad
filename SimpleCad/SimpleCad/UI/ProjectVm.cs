@@ -11,13 +11,14 @@ namespace SimpleCad.UI
     internal class ProjectVm : INotifyPropertyChanged
     {
         private Project _project;
-        private ProjectGeometry _selectedGeometry;
+        private ProjectGeometryVm _selectedGeometry;
         private ObservableCollection<ProjectGeometryVm> _geometry = new();
 
         public ProjectVm(Project project)
         {
             _project = project;
 
+            AddLineCommand = new AddLineCommand(this);
             AddCircleCommand = new AddCircleCommand(this);
             AddRectangleCommand = new AddRectangleCommand(this);
         }
@@ -28,12 +29,21 @@ namespace SimpleCad.UI
             set => _geometry = value;
         }
 
-        public ProjectGeometry SelectedGeometry
+        public ProjectGeometryVm SelectedGeometry
         {
             get => _selectedGeometry;
             set
             {
+                foreach (var curGeometry in Geometry)
+                {
+                    if (curGeometry != value)
+                        curGeometry.IsSelected = false;
+                }
+
                 _selectedGeometry = value;
+                if(value != null)
+                    value.IsSelected = true;
+                
                 OnPropertyChanged(nameof(SelectedGeometry));
             }
         }

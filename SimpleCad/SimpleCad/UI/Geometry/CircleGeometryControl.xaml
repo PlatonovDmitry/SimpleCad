@@ -30,6 +30,13 @@
                         <DataTrigger Binding="{Binding IsMouseOver}" Value="True">
                             <Setter Property="Ellipse.Stroke" >
                                 <Setter.Value>
+                                    <SolidColorBrush Color="LightBlue"/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                            <Setter Property="Ellipse.Stroke" >
+                                <Setter.Value>
                                     <SolidColorBrush Color="Blue"/>
                                 </Setter.Value>
                             </Setter>

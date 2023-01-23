@@ -7,7 +7,7 @@ namespace SimpleCad.UI
 {
     internal class AddRectangleCommand : ICommand
     {
-        private ProjectVm _vm;
+        private readonly ProjectVm _vm;
 
         public AddRectangleCommand(ProjectVm vm)
         {

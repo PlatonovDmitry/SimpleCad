@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SimpleCad.UI.Geometry
@@ -27,7 +16,7 @@ namespace SimpleCad.UI.Geometry
 
         private void UIElement_OnMouseEnter(object sender, MouseEventArgs e)
         {
-            if (DataContext is LineGeometryVm vm)
+            if (sender is Line line && DataContext is LineGeometryVm vm)
             {
                 if (!vm.IsSelected)
                     vm.IsMouseOver = true;
@@ -36,7 +25,7 @@ namespace SimpleCad.UI.Geometry
 
         private void UIElement_OnMouseLeave(object sender, MouseEventArgs e)
         {
-            if (DataContext is LineGeometryVm vm)
+            if (sender is Line line && DataContext is LineGeometryVm vm)
             {
                 vm.IsMouseOver = false;
             }

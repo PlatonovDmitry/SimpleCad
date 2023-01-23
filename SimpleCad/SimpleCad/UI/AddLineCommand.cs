@@ -5,11 +5,11 @@ using SimpleCad.UI.Geometry;
 
 namespace SimpleCad.UI
 {
-    internal class AddCircleCommand : ICommand
+    internal class AddLineCommand : ICommand
     {
         private readonly ProjectVm _vm;
 
-        public AddCircleCommand(ProjectVm vm)
+        public AddLineCommand(ProjectVm vm)
         {
             _vm = vm;
         }
@@ -18,14 +18,14 @@ namespace SimpleCad.UI
 
         public void Execute(object parameter)
         {
-            var circle = new CircleGeometry()
+            var circle = new LineGeometry()
             {
+                StartPoint = new PointGeometry(-50, 50),
+                EndPoint = new PointGeometry(50, -50),
                 Thickness = 2,
-                Center = new PointGeometry(1, 3),
                 Color = 1,
-                Radius = 10,
             };
-            _vm.Geometry.Add(new CircleGeometryVm(circle));
+            _vm.Geometry.Add(new LineGeometryVm(circle));
         }
 
         public event EventHandler CanExecuteChanged;
