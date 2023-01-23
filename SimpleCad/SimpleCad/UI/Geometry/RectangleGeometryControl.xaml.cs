@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
-using SimpleCad.Enums;
+using SimpleCad.Helpers.Enums;
 
 namespace SimpleCad.UI.Geometry
 {

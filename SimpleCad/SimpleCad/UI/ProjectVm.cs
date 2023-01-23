@@ -48,9 +48,9 @@ namespace SimpleCad.UI
                     case CircleGeometry circle:
                         newGeometry = new CircleGeometryVm(circle);
                         break;
-                    //case LineGeometry line:
-                    //    newGeometry = new LineGeometryVm(line);
-                    //    break;
+                    case LineGeometry line:
+                        newGeometry = new LineGeometryVm(line);
+                        break;
                     case RectangleGeometry rectangle:
                         newGeometry = new RectangleGeometryVm(rectangle);
                         break;

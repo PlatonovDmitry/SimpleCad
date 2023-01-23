@@ -32,6 +32,14 @@ namespace SimpleCad
                 Thickness = 3
             });
 
+            project.Geometry.Add(new LineGeometry()
+            {
+                StartPoint = new PointGeometry(150, 100),
+                EndPoint = new PointGeometry(250, -100),
+                Color = val,
+                Thickness = 3
+            });
+
 
             var vm = new ProjectVm(project);
             vm.Load();

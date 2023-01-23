@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 using SimpleCad.Helpers;
 using SimpleCad.Models;
 
@@ -43,14 +44,9 @@ namespace SimpleCad.UI.Geometry
             get => _x[0];
             set
             {
-                if(value < _x[1])
-                {
-                    _x[0] = value;
-                    OnPropertyChanged(nameof(LeftTopX));
-                    OnPropertyChanged(nameof(PositionLeft));
-                    OnPropertyChanged(nameof(Width));
-                    OnPropertyChanged(nameof(CenterX));
-                }
+                _x[0] = value;
+                OnPropertyChanged(nameof(LeftTopX));
+                _riseXNotifiers();
             }
         }
 
@@ -59,14 +55,9 @@ namespace SimpleCad.UI.Geometry
             get => _x[1];
             set
             {
-                if(value > _x[0])
-                {
-                    _x[1] = value;
-                    OnPropertyChanged(nameof(RightBottomX));
-                    OnPropertyChanged(nameof(PositionLeft));
-                    OnPropertyChanged(nameof(Width));
-                    OnPropertyChanged(nameof(CenterX));
-                }
+                _x[1] = value;
+                OnPropertyChanged(nameof(RightBottomX));
+                _riseXNotifiers();
             }
         }
 
@@ -75,14 +66,9 @@ namespace SimpleCad.UI.Geometry
             get => _y[0];
             set
             {
-                if(value < _y[1])
-                {
-                    _y[0] = value;
-                    OnPropertyChanged(nameof(LeftTopY));
-                    OnPropertyChanged(nameof(PositionTop));
-                    OnPropertyChanged(nameof(Height));
-                    OnPropertyChanged(nameof(CenterY));
-                }
+                _y[0] = value;
+                OnPropertyChanged(nameof(LeftTopY));
+                _riseYNotifiers();
             }
         }
 
@@ -91,14 +77,9 @@ namespace SimpleCad.UI.Geometry
             get => _y[1];
             set
             {
-                if(value > _y[0])
-                {
-                    _y[1] = value;
-                    OnPropertyChanged(nameof(RightBottomY));
-                    OnPropertyChanged(nameof(PositionTop));
-                    OnPropertyChanged(nameof(Height));
-                    OnPropertyChanged(nameof(CenterY));
-                }
+                _y[1] = value;
+                OnPropertyChanged(nameof(RightBottomY));
+                _riseYNotifiers();
             }
         }
 
@@ -122,6 +103,32 @@ namespace SimpleCad.UI.Geometry
                 LeftTopY += dy;
                 RightBottomY += dy;
             }
+        }
+
+        public HorizontalAlignment HorizontalAlignment =>
+            LeftTopX < RightBottomX
+                ? HorizontalAlignment.Left
+                : HorizontalAlignment.Right;
+
+        public VerticalAlignment VerticalAlignment =>
+            LeftTopY < RightBottomY
+                ? VerticalAlignment.Top
+                : VerticalAlignment.Bottom;
+
+        private void _riseXNotifiers()
+        {
+            OnPropertyChanged(nameof(PositionLeft));
+            OnPropertyChanged(nameof(Width));
+            OnPropertyChanged(nameof(CenterX));
+            OnPropertyChanged(nameof(HorizontalAlignment));
+        }
+
+        private void _riseYNotifiers()
+        {
+            OnPropertyChanged(nameof(PositionTop));
+            OnPropertyChanged(nameof(Height));
+            OnPropertyChanged(nameof(CenterY));
+            OnPropertyChanged(nameof(VerticalAlignment));
         }
     }
 }

@@ -19,6 +19,10 @@
         <DataTemplate DataType="{x:Type geometry:RectangleGeometryVm}">
             <geometry:RectangleGeometryControl />
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type geometry:LineGeometryVm}">
+            <geometry:LineGeometryControl />
+        </DataTemplate>
     </Window.Resources>
 
     <DockPanel>

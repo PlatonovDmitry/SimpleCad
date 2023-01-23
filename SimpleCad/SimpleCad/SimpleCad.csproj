@@ -57,7 +57,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Enums\RectangleSide.cs" />
+    <Compile Include="Helpers\Converters\InvertAlignmentConverter.cs" />
+    <Compile Include="Helpers\Enums\RectangleSide.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Helpers\NotifyObject.cs" />
     <Compile Include="Helpers\ParentOfTypeExtension.cs" />
@@ -70,6 +71,9 @@
       <DependentUpon>CircleGeometryControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Geometry\CircleGeometryVm.cs" />
+    <Compile Include="UI\Geometry\LineGeometryControl.xaml.cs">
+      <DependentUpon>LineGeometryControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Geometry\PointGeometryControl.xaml.cs">
       <DependentUpon>PointGeometryControl.xaml</DependentUpon>
     </Compile>
@@ -82,6 +86,10 @@
     <Compile Include="UI\ProjectVm.cs" />
     <Compile Include="UI\Geometry\RectangleGeometryVm.cs" />
     <Page Include="UI\Geometry\CircleGeometryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Geometry\LineGeometryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

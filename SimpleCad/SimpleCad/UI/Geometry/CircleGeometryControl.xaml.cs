@@ -38,10 +38,10 @@ namespace SimpleCad.UI.Geometry
 
         private void Circle_OnMouseEnter(object sender, MouseEventArgs e)
         {
-            if (sender is Ellipse ellipse && DataContext is CircleGeometryVm circle)
+            if (sender is Ellipse ellipse && DataContext is CircleGeometryVm vm)
             {
-                if(!circle.IsSelected)
-                    circle.IsMouseOver = true;
+                if(!vm.IsSelected)
+                    vm.IsMouseOver = true;
 
                 SetCursor(ellipse, e);
             }
@@ -49,9 +49,9 @@ namespace SimpleCad.UI.Geometry
 
         private void Circle_OnMouseLeave(object sender, MouseEventArgs e)
         {
-            if (sender is Ellipse ellipse && DataContext is CircleGeometryVm circle)
+            if (sender is Ellipse ellipse && DataContext is CircleGeometryVm vm)
             {
-                circle.IsMouseOver = false;
+                vm.IsMouseOver = false;
                 ellipse.Cursor = Cursors.Arrow;
             }
         }
@@ -75,9 +75,9 @@ namespace SimpleCad.UI.Geometry
         private void Circle_OnMouseMove(object sender, MouseEventArgs e)
         {
             if (sender is Ellipse ellipse
-                && DataContext is CircleGeometryVm circle)
+                && DataContext is CircleGeometryVm vm)
             {
-                if(circle.IsMouseOver)
+                if(vm.IsMouseOver)
                     SetCursor(ellipse, e);
 
                 if(ellipse.IsMouseCaptured)
@@ -85,7 +85,7 @@ namespace SimpleCad.UI.Geometry
                     var curMousePoint = e.GetPosition(CenterPoint);
                     var curX = curMousePoint.X - CenterPoint.ActualWidth;
                     var curY = curMousePoint.Y - CenterPoint.ActualHeight;
-                    circle.Diametr = 2 * Math.Sqrt(Math.Pow(curX, 2) + Math.Pow(curY, 2));
+                    vm.Diametr = 2 * Math.Sqrt(Math.Pow(curX, 2) + Math.Pow(curY, 2));
                 }
             }
         }
